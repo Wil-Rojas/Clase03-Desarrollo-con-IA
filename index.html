@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Diálogo y Desarrollo | Análisis para el desarrollo sostenible</title>
+
+  <meta
+    name="description"
+    content="Diálogo y Desarrollo: análisis, investigaciones y conversaciones sobre política, sociedad y medio ambiente en el Perú."
+  >
+
+  <meta name="theme-color" content="#1a472a">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:title" content="Diálogo y Desarrollo | Análisis para el desarrollo sostenible">
+  <meta
+    property="og:description"
+    content="Artículos, investigaciones y conversaciones sobre política y medio ambiente en el Perú."
+  >
+  <meta
+    property="og:image"
+    content="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1600&q=85"
+  >
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1a472a',
+            navy: '#0f3460',
+            bone: '#faf9f6',
+            charcoal: '#2d2d2d',
+            terracotta: '#c75b39'
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'Arial', 'sans-serif']
+          },
+          boxShadow: {
+            editorial: '0 12px 40px rgba(15, 52, 96, 0.08)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --forest: #1a472a;
+      --navy: #0f3460;
+      --bone: #faf9f6;
+      --charcoal: #2d2d2d;
+      --terracotta: #c75b39;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bone);
+      color: var(--charcoal);
+      font-family: 'Inter', Arial, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    ::selection {
+      background: var(--forest);
+      color: #fff;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 1rem;
+      z-index: 9999;
+      padding: 0.75rem 1rem;
+      background: #fff;
+      color: var(--forest);
+      border: 2px solid var(--forest);
+      font-weight: 700;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Global focus */
+    :focus-visible {
+      outline: 3px solid #e09b83;
+      outline-offset: 4px;
+    }
+
+    /* Navigation */
+    .nav-link {
+      position: relative;
+      color: #24352a;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 100%;
+      height: 2px;
+      background: var(--terracotta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--forest);
+    }
+
+    .nav-link:hover::after,
+    .nav-link[aria-current="page"]::after {
+      transform: scaleX(1);
+    }
+
+    /* Animated hamburger */
+    .hamburger-line {
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+
+    .menu-open .line-one {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-open .line-two {
+      opacity: 0;
+    }
+
+    .menu-open .line-three {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: min(760px, calc(100vh - 76px));
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(7, 31, 19, 0.90) 0%,
+          rgba(13, 51, 35, 0.78) 42%,
+          rgba(13, 51, 35, 0.24) 100%
+        ),
+        url('https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=2200&q=88');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Cards */
+    .article-card {
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(15, 52, 96, 0.12);
+    }
+
+    .article-image {
+      transition: transform 0.5s ease;
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.045);
+    }
+
+    /* Reportage */
+    .reportage-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reportage-card img {
+      transition: transform 0.6s ease;
+    }
+
+    .reportage-overlay {
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+
+    .reportage-card:hover img,
+    .reportage-card:focus-within img {
+      transform: scale(1.06);
+    }
+
+    .reportage-card:hover .reportage-overlay,
+    .reportage-card:focus-within .reportage-overlay {
+      transform: translateY(0);
+    }
+
+    /* Podcast */
+    .podcast-card {
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .podcast-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(199, 91, 57, 0.5);
+    }
+
+    /* Search */
+    .search-panel {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .search-panel.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Back to top */
+    #backToTop {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Accessibility -->
+  <a href="#contenido" class="skip-link">
+    Saltar al contenido principal
+  </a>
+
+  <!-- HEADER -->
+  <header
+    id="site-header"
+    class="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-bone/95 backdrop-blur-md"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-[76px] items-center justify-between gap-4">
+
+        <!-- Logo -->
+        <a
+          href="#inicio"
+          class="group flex min-w-0 items-center gap-3 rounded-sm"
+          aria-label="Diálogo y Desarrollo - página de inicio"
+        >
+          <span
+            class="flex h-10 w-10 shrink-0 items-center justify-center bg-forest text-white"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 40 40"
+              width="25"
+              height="25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 5C13 10 9 16 9 23c0 7 5 11 11 12 6-1 11-5 11-12 0-7-4-13-11-18Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M20 12v18M20 20c-3-3-6-4-9-4M20 25c3-3 6-4 9-4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+
+          <span class="truncate font-display text-lg font-bold leading-tight text-forest sm:text-xl">
+            Diálogo y Desarrollo
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav
+          class="hidden items-center gap-6 lg:flex xl:gap-8"
+          aria-label="Navegación principal"
+        >
+          <a href="#inicio" class="nav-link" aria-current="page">Inicio</a>
+          <a href="#actualidad" class="nav-link">Actualidad</a>
+          <a href="#podcasts" class="nav-link">Podcasts</a>
+          <a href="#reportajes" class="nav-link">Reportajes</a>
+          <a href="#nosotros" class="nav-link">Sobre Nosotros</a>
+          <a href="#contacto" class="nav-link">Contacto</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2">
+
+          <!-- Search -->
+          <button
+            id="searchToggle"
+            type="button"
+            class="flex h-10 w-10 items-center justify-center rounded-full text-navy transition hover:bg-slate-100"
+            aria-label="Abrir búsqueda"
+            aria-expanded="false"
+            aria-controls="searchPanel"
+          >
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+          </button>
+
+          <!-- Mobile menu -->
+          <button
+            id="menuToggle"
+            type="button"
+            class="flex h-10 w-10 items-center justify-center rounded-full text-navy hover:bg-slate-100 lg:hidden"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="flex w-6 flex-col gap-[5px]" aria-hidden="true">
+              <span class="hamburger-line line-one block h-0.5 w-6 bg-current"></span>
+              <span class="hamburger-line line-two block h-0.5 w-6 bg-current"></span>
+              <span class="hamburger-line line-three block h-0.5 w-6 bg-current"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Panel -->
+    <div
+      id="searchPanel"
+      class="search-panel absolute inset-x-0 top-full border-b border-slate-200 bg-white shadow-lg"
+      aria-hidden="true"
+    >
+      <div class="mx-auto max-w-3xl px-4 py-5 sm:px-6">
+        <form id="searchForm" role="search">
+          <label for="searchInput" class="sr-only">
+            Buscar contenido
+          </label>
+
+          <div class="relative">
+            <input
+              id="searchInput"
+              type="search"
+              autocomplete="off"
+              placeholder="Buscar artículos, temas o autores..."
+              class="w-full border-b-2 border-forest bg-transparent py-3 pr-12 text-base text-charcoal placeholder:text-slate-500 focus:border-terracotta focus:outline-none"
+            >
+
+            <button
+              type="submit"
+              class="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-forest"
+              aria-label="Ejecutar búsqueda"
+            >
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-4-4"></path>
+              </svg>
+            </button>
+          </div>
+
+          <p id="searchStatus" class="mt-3 text-sm text-slate-600" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav
+      id="mobileMenu"
+      class="hidden border-t border-slate-200 bg-white lg:hidden"
+      aria-label="Navegación móvil"
+    >
+      <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+        <div class="flex flex-col">
+          <a href="#inicio" class="border-b border-slate-100 px-2 py-3 font-semibold text-forest">Inicio</a>
+          <a href="#actualidad" class="border-b border-slate-100 px-2 py-3 font-semibold text-charcoal">Actualidad</a>
+          <a href="#podcasts" class="border-b border-slate-100 px-2 py-3 font-semibold text-charcoal">Podcasts</a>
+          <a href="#reportajes" class="border-b border-slate-100 px-2 py-3 font-semibold text-charcoal">Reportajes</a>
+          <a href="#nosotros" class="border-b border-slate-100 px-2 py-3 font-semibold text-charcoal">Sobre Nosotros</a>
+          <a href="#contacto" class="px-2 py-3 font-semibold text-charcoal">Contacto</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main id="contenido">
+
+    <!-- HERO -->
+    <section
+      id="inicio"
+      class="hero flex items-center pt-[76px]"
+      aria-labelledby="hero-title"
+    >
+      <div class="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+
+        <div class="max-w-3xl">
+          <p class="mb-5 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#e6b6a5]">
+            <span class="h-px w-10 bg-[#e6b6a5]" aria-hidden="true"></span>
+            Investigación · Diálogo · Futuro
+          </p>
+
+          <h1
+            id="hero-title"
+            class="max-w-3xl text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
+          >
+            Análisis para el
+            <span class="text-[#e8c9bd]">desarrollo sostenible</span>
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-base leading-8 text-slate-100 sm:text-lg">
+            Artículos, investigaciones y conversaciones sobre política
+            y medio ambiente en el Perú.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#actualidad"
+              class="inline-flex min-h-12 items-center justify-center gap-2 bg-terracotta px-6 py-3 text-sm font-bold text-white transition hover:bg-[#a9472c]"
+            >
+              Explorar contenido
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+
+            <a
+              href="#nosotros"
+              class="inline-flex min-h-12 items-center justify-center border border-white/70 px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-forest"
+            >
+              Conoce nuestra mirada
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ACTUALIDAD -->
+    <section
+      id="actualidad"
+      class="bg-bone py-20 sm:py-24 lg:py-28"
+      aria-labelledby="publicaciones-title"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="mb-12 flex flex-col justify-between gap-5 border-b border-slate-300 pb-7 md:flex-row md:items-end">
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-terracotta">
+              Actualidad
+            </p>
+
+            <h2
+              id="publicaciones-title"
+              class="text-3xl font-semibold text-forest sm:text-4xl lg:text-5xl"
+            >
+              Últimas publicaciones
+            </h2>
+          </div>
+
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 self-start text-sm font-bold text-navy hover:text-terracotta md:self-auto"
+          >
+            Ver todas las publicaciones
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+
+        <div
+          id="articleGrid"
+          class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+
+          <!-- Article 1 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="minería transición energética cobre comunidades territorio economía"
+          >
+            <a href="#" class="block" aria-label="Leer: El cobre ante la nueva transición energética">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=1000&q=80"
+                  alt="Paisaje montañoso asociado a actividad minera en los Andes"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#e6efe9] px-3 py-1 text-xs font-bold uppercase tracking-wider text-forest">
+                Minería
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  El cobre ante la nueva transición energética
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                La demanda global de minerales críticos abre una oportunidad
+                para el Perú, pero también plantea nuevos desafíos sociales,
+                ambientales y territoriales.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">María Valdivia</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-08-12">12 ago. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>8 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Article 2 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="deforestación amazonía bosque conservación cambio climático ambiente"
+          >
+            <a href="#" class="block" aria-label="Leer: La Amazonía frente al avance de la deforestación">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1000&q=80"
+                  alt="Bosque tropical de la Amazonía visto desde una perspectiva elevada"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#e8e9f3] px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy">
+                Ambiente
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  La Amazonía frente al avance de la deforestación
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                Nuevos focos de pérdida de cobertura forestal obligan a
+                revisar la coordinación entre gobiernos regionales,
+                comunidades y autoridades nacionales.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">Luis Echevarría</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-08-09">9 ago. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>6 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Article 3 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="reforma política democracia instituciones elecciones congreso representación"
+          >
+            <a href="#" class="block" aria-label="Leer: Reforma política y el desafío de recuperar la confianza">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1000&q=80"
+                  alt="Edificio institucional representativo de la actividad política"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#f5e9e5] px-3 py-1 text-xs font-bold uppercase tracking-wider text-terracotta">
+                Política
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  Reforma política y el desafío de recuperar la confianza
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                Más allá de las reglas electorales, la reforma institucional
+                requiere fortalecer los incentivos para una representación
+                política responsable y transparente.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">Andrea Salazar</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-08-06">6 ago. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>9 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Article 4 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="agua andes glaciares seguridad hídrica ciudades agricultura cambio climático"
+          >
+            <a href="#" class="block" aria-label="Leer: Agua en los Andes: una agenda para las próximas décadas">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+                  alt="Montañas andinas con nieve y fuentes de agua"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#e8e9f3] px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy">
+                Territorio
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  Agua en los Andes: una agenda para las próximas décadas
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                La seguridad hídrica exige conectar políticas de adaptación,
+                infraestructura y gestión territorial con el conocimiento
+                de las comunidades altoandinas.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">Carlos Huamán</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-08-02">2 ago. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>7 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Article 5 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="economía desarrollo empleo productividad informalidad regiones perú"
+          >
+            <a href="#" class="block" aria-label="Leer: Productividad y empleo: el reto que permanece invisible">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
+                  alt="Personas trabajando alrededor de una mesa durante una reunión"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#f0eee4] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#625a27]">
+                Economía
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  Productividad y empleo: el reto que permanece invisible
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                Reducir la brecha de productividad requiere políticas
+                sostenidas que conecten educación, infraestructura,
+                innovación y desarrollo empresarial.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">Jorge Medina</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-07-29">29 jul. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>5 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Article 6 -->
+          <article
+            class="article-card overflow-hidden border border-slate-200 bg-white shadow-editorial"
+            data-search="comunidades indígenas consulta previa derechos territorio gobernanza amazónica"
+          >
+            <a href="#" class="block" aria-label="Leer: Comunidades y Estado: nuevas rutas para el diálogo territorial">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  class="article-image h-full w-full object-cover"
+                  src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1000&q=80"
+                  alt="Vegetación amazónica representando los territorios indígenas de la selva"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                >
+              </div>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <span class="inline-flex bg-[#e6efe9] px-3 py-1 text-xs font-bold uppercase tracking-wider text-forest">
+                Sociedad
+              </span>
+
+              <h3 class="mt-4 text-2xl font-semibold leading-tight text-charcoal">
+                <a href="#" class="hover:text-forest">
+                  Comunidades y Estado: nuevas rutas para el diálogo territorial
+                </a>
+              </h3>
+
+              <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                El diálogo intercultural puede convertirse en una herramienta
+                de prevención de conflictos cuando existe información,
+                participación y capacidad institucional.
+              </p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                <span class="font-semibold text-charcoal">Rosa Quispe</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="2026-07-25">25 jul. 2026</time>
+                <span aria-hidden="true">·</span>
+                <span>8 min de lectura</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- No results -->
+        <div
+          id="noResults"
+          class="hidden py-16 text-center"
+          aria-live="polite"
+        >
+          <div class="mx-auto max-w-md">
+            <p class="font-display text-2xl font-semibold text-forest">
+              No encontramos publicaciones
+            </p>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Intenta con otro término de búsqueda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PODCAST -->
+    <section
+      id="podcasts"
+      class="bg-forest py-20 text-white sm:py-24 lg:py-28"
+      aria-labelledby="podcast-title"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="grid gap-12 lg:grid-cols-[0.85fr_1.4fr] lg:items-start">
+
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-[#e6b6a5]">
+              Podcast
+            </p>
+
+            <h2
+              id="podcast-title"
+              class="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl"
+            >
+              Ideas que generan conversación
+            </h2>
+
+            <p class="mt-5 max-w-xl text-sm leading-7 text-slate-200 sm:text-base">
+              Conversaciones con investigadores, especialistas y actores
+              públicos sobre los desafíos que definirán el futuro del Perú.
+            </p>
+
+            <a
+              href="#"
+              class="mt-7 inline-flex items-center gap-2 border-b border-[#e6b6a5] pb-1 text-sm font-bold text-white hover:text-[#e6b6a5]"
+            >
+              Ver todos los episodios
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+
+          <div class="space-y-4">
+
+            <!-- Podcast 1 -->
+            <article class="podcast-card border border-white/15 bg-white/[0.06] p-5 sm:p-6">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+
+                <div
+                  class="flex h-14 w-14 shrink-0 items-center justify-center bg-terracotta"
+                  aria-hidden="true"
+                >
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <path d="M12 19v4"></path>
+                    <path d="M8 23h8"></path>
+                  </svg>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                    Episodio 24
+                  </p>
+
+                  <h3 class="mt-1 text-xl font-semibold">
+                    ¿Puede el Perú aprovechar el boom de los minerales críticos?
+                  </h3>
+
+                  <p class="mt-2 text-sm leading-6 text-slate-300">
+                    Una conversación sobre inversión, transición energética
+                    y sostenibilidad en el sector minero.
+                  </p>
+
+                  <div class="mt-3 flex items-center gap-3 text-xs text-slate-400">
+                    <span>38 min</span>
+                    <span aria-hidden="true">·</span>
+                    <span>María Valdivia + Diego Ramos</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  class="listen-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-white px-5 py-2 text-sm font-bold text-forest transition hover:bg-[#e6b6a5]"
+                  data-episode="¿Puede el Perú aprovechar el boom de los minerales críticos?"
+                  aria-label="Escuchar episodio: ¿Puede el Perú aprovechar el boom de los minerales críticos?"
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7L8 5Z"></path>
+                  </svg>
+                  Escuchar
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Podcast 2 -->
+            <article class="podcast-card border border-white/15 bg-white/[0.06] p-5 sm:p-6">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+
+                <div
+                  class="flex h-14 w-14 shrink-0 items-center justify-center bg-navy"
+                  aria-hidden="true"
+                >
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <path d="M12 19v4"></path>
+                    <path d="M8 23h8"></path>
+                  </svg>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                    Episodio 23
+                  </p>
+
+                  <h3 class="mt-1 text-xl font-semibold">
+                    Amazonía: gobernanza más allá de las fronteras
+                  </h3>
+
+                  <p class="mt-2 text-sm leading-6 text-slate-300">
+                    ¿Cómo pueden coordinarse las instituciones para proteger
+                    bosques y mejorar las oportunidades locales?
+                  </p>
+
+                  <div class="mt-3 flex items-center gap-3 text-xs text-slate-400">
+                    <span>31 min</span>
+                    <span aria-hidden="true">·</span>
+                    <span>Rosa Quispe + Elena Torres</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  class="listen-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-white px-5 py-2 text-sm font-bold text-forest transition hover:bg-[#e6b6a5]"
+                  data-episode="Amazonía: gobernanza más allá de las fronteras"
+                  aria-label="Escuchar episodio: Amazonía, gobernanza más allá de las fronteras"
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7L8 5Z"></path>
+                  </svg>
+                  Escuchar
+                </button>
+              </div>
+            </article>
+
+
+            <!-- Podcast 3 -->
+            <article class="podcast-card border border-white/15 bg-white/[0.06] p-5 sm:p-6">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+
+                <div
+                  class="flex h-14 w-14 shrink-0 items-center justify-center bg-terracotta"
+                  aria-hidden="true"
+                >
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <path d="M12 19v4"></path>
+                    <path d="M8 23h8"></path>
+                  </svg>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                    Episodio 22
+                  </p>
+
+                  <h3 class="mt-1 text-xl font-semibold">
+                    Instituciones y confianza: el reto democrático
+                  </h3>
+
+                  <p class="mt-2 text-sm leading-6 text-slate-300">
+                    Una mirada a las causas de la desconfianza ciudadana
+                    y las alternativas para reconstruir legitimidad.
+                  </p>
+
+                  <div class="mt-3 flex items-center gap-3 text-xs text-slate-400">
+                    <span>42 min</span>
+                    <span aria-hidden="true">·</span>
+                    <span>Andrea Salazar + Martín Paredes</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  class="listen-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 bg-white px-5 py-2 text-sm font-bold text-forest transition hover:bg-[#e6b6a5]"
+                  data-episode="Instituciones y confianza: el reto democrático"
+                  aria-label="Escuchar episodio: Instituciones y confianza, el reto democrático"
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7L8 5Z"></path>
+                  </svg>
+                  Escuchar
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- REPORTAJES MULTIMEDIA -->
+    <section
+      id="reportajes"
+      class="bg-white py-20 sm:py-24 lg:py-28"
+      aria-labelledby="reportajes-title"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="mb-12 max-w-2xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-terracotta">
+            Narrativas visuales
+          </p>
+
+          <h2
+            id="reportajes-title"
+            class="text-3xl font-semibold text-forest sm:text-4xl lg:text-5xl"
+          >
+            Reportajes multimedia
+          </h2>
+
+          <p class="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
+            Historias contadas desde el territorio para comprender mejor
+            las transformaciones sociales y ambientales del país.
+          </p>
+        </div>
+
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+          <!-- Featured -->
+          <a
+            href="#"
+            class="reportage-card group min-h-[420px] sm:col-span-2 lg:row-span-2 lg:min-h-[620px]"
+            aria-label="Ver reportaje: Guardianes del bosque"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85"
+              alt="Bosque amazónico peruano"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              width="1400"
+              height="1050"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                Reportaje especial
+              </span>
+              <h3 class="mt-2 text-3xl font-semibold">
+                Guardianes del bosque
+              </h3>
+            </div>
+
+            <div class="reportage-overlay absolute inset-x-0 bottom-0 bg-forest p-6 text-white">
+              <p class="text-sm leading-6">
+                Comunidades amazónicas que protegen sus territorios frente
+                a la presión sobre los bosques.
+              </p>
+            </div>
+          </a>
+
+
+          <!-- Reportage 2 -->
+          <a
+            href="#"
+            class="reportage-card group min-h-[300px]"
+            aria-label="Ver reportaje: Agua de altura"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80"
+              alt="Paisaje de alta montaña de los Andes"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              width="1000"
+              height="750"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                Territorio
+              </span>
+              <h3 class="mt-1 text-xl font-semibold">
+                Agua de altura
+              </h3>
+            </div>
+
+            <div class="reportage-overlay absolute inset-x-0 bottom-0 bg-navy p-5 text-white">
+              <p class="text-sm leading-6">
+                El futuro del agua en los Andes peruanos.
+              </p>
+            </div>
+          </a>
+
+
+          <!-- Reportage 3 -->
+          <a
+            href="#"
+            class="reportage-card group min-h-[300px]"
+            aria-label="Ver reportaje: Territorios en transformación"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=80"
+              alt="Vista urbana de una ciudad en transformación"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              width="1000"
+              height="750"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                Ciudades
+              </span>
+              <h3 class="mt-1 text-xl font-semibold">
+                Territorios en transformación
+              </h3>
+            </div>
+
+            <div class="reportage-overlay absolute inset-x-0 bottom-0 bg-forest p-5 text-white">
+              <p class="text-sm leading-6">
+                Urbanización, movilidad y calidad de vida.
+              </p>
+            </div>
+          </a>
+
+
+          <!-- Reportage 4 -->
+          <a
+            href="#"
+            class="reportage-card group min-h-[300px]"
+            aria-label="Ver reportaje: El pulso de la minería"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=1000&q=80"
+              alt="Paisaje montañoso de la cordillera de los Andes"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              width="1000"
+              height="750"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                Economía
+              </span>
+              <h3 class="mt-1 text-xl font-semibold">
+                El pulso de la minería
+              </h3>
+            </div>
+
+            <div class="reportage-overlay absolute inset-x-0 bottom-0 bg-terracotta p-5 text-white">
+              <p class="text-sm leading-6">
+                Minería, comunidades y nuevas exigencias ambientales.
+              </p>
+            </div>
+          </a>
+
+
+          <!-- Reportage 5 -->
+          <a
+            href="#"
+            class="reportage-card group min-h-[300px]"
+            aria-label="Ver reportaje: Voces del territorio"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1000&q=80"
+              alt="Persona observando un paisaje natural"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              width="1000"
+              height="750"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#e6b6a5]">
+                Sociedad
+              </span>
+              <h3 class="mt-1 text-xl font-semibold">
+                Voces del territorio
+              </h3>
+            </div>
+
+            <div class="reportage-overlay absolute inset-x-0 bottom-0 bg-navy p-5 text-white">
+              <p class="text-sm leading-6">
+                Historias de quienes viven los cambios en primera persona.
+              </p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SOBRE NOSOTROS -->
+    <section
+      id="nosotros"
+      class="bg-bone py-20 sm:py-24 lg:py-28"
+      aria-labelledby="nosotros-title"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
+
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-terracotta">
+              Sobre nosotros
+            </p>
+
+            <h2
+              id="nosotros-title"
+              class="text-3xl font-semibold leading-tight text-forest sm:text-4xl lg:text-5xl"
+            >
+              Información rigurosa para decisiones que importan.
+            </h2>
+          </div>
+
+          <div class="space-y-5 text-sm leading-7 text-slate-600 sm:text-base">
+            <p>
+              <strong class="text-charcoal">Diálogo y Desarrollo</strong>
+              es una plataforma independiente dedicada a analizar los
+              principales desafíos políticos, económicos, sociales y
+              ambientales del Perú.
+            </p>
+
+            <p>
+              Trabajamos en la intersección entre investigación, periodismo
+              y conversación pública para acercar evidencia y distintas
+              perspectivas a quienes participan en la construcción del país.
+            </p>
+
+            <p>
+              Nuestro compromiso es contribuir a un debate público informado,
+              plural y orientado a soluciones de largo plazo.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- NEWSLETTER / CONTACTO -->
+    <section
+      id="contacto"
+      class="bg-navy py-16 text-white sm:py-20"
+      aria-labelledby="newsletter-title"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-[#e6b6a5]">
+              Mantente informado
+            </p>
+
+            <h2
+              id="newsletter-title"
+              class="text-3xl font-semibold sm:text-4xl"
+            >
+              Ideas para entender el presente y construir el futuro.
+            </h2>
+
+            <p class="mt-4 max-w-xl text-sm leading-7 text-slate-200">
+              Recibe nuestras publicaciones, investigaciones y nuevos
+              episodios directamente en tu correo.
+            </p>
+          </div>
+
+          <form id="newsletterForm" class="w-full">
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <div class="flex-1">
+                <label for="email" class="sr-only">
+                  Correo electrónico
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="Tu correo electrónico"
+                  class="min-h-12 w-full border border-white/20 bg-white px-4 text-sm text-charcoal placeholder:text-slate-500 focus:border-[#e6b6a5] focus:outline-none"
+                >
+              </div>
+
+              <button
+                type="submit"
+                class="min-h-12 bg-terracotta px-6 text-sm font-bold text-white transition hover:bg-[#a9472c]"
+              >
+                Suscribirme
+              </button>
+            </div>
+
+            <p class="mt-3 text-xs leading-5 text-slate-300">
+              Al suscribirte aceptas recibir comunicaciones editoriales de
+              Diálogo y Desarrollo. Puedes cancelar tu suscripción en cualquier momento.
+            </p>
+
+            <p
+              id="newsletterStatus"
+              class="mt-3 text-sm font-semibold text-[#e6b6a5]"
+              aria-live="polite"
+            ></p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-[#10261a] text-slate-300">
+
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Column 1 -->
+        <div>
+          <a
+            href="#inicio"
+            class="inline-flex items-center gap-3 text-white"
+            aria-label="Diálogo y Desarrollo - volver al inicio"
+          >
+            <span
+              class="flex h-9 w-9 items-center justify-center bg-terracotta"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 40 40"
+                width="22"
+                height="22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 5C13 10 9 16 9 23c0 7 5 11 11 12 6-1 11-5 11-12 0-7-4-13-11-18Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M20 12v18M20 20c-3-3-6-4-9-4M20 25c3-3 6-4 9-4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+
+            <span class="font-display text-lg font-bold">
+              Diálogo y Desarrollo
+            </span>
+          </a>
+
+          <p class="mt-5 max-w-xs text-sm leading-6 text-slate-400">
+            Investigación, análisis y diálogo para comprender los desafíos
+            del Perú y contribuir a un desarrollo sostenible.
+          </p>
+        </div>
+
+
+        <!-- Column 2 -->
+        <div>
+          <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-white">
+            Enlaces rápidos
+          </h2>
+
+          <nav class="mt-5 flex flex-col gap-3 text-sm" aria-label="Enlaces del pie de página">
+            <a href="#inicio" class="hover:text-white">Inicio</a>
+            <a href="#actualidad" class="hover:text-white">Actualidad</a>
+            <a href="#podcasts" class="hover:text-white">Podcasts</a>
+            <a href="#reportajes" class="hover:text-white">Reportajes</a>
+            <a href="#nosotros" class="hover:text-white">Sobre Nosotros</a>
+            <a href="#contacto" class="hover:text-white">Contacto</a>
+          </nav>
+        </div>
+
+
+        <!-- Column 3 -->
+        <div>
+          <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-white">
+            Categorías
+          </h2>
+
+          <nav class="mt-5 flex flex-col gap-3 text-sm" aria-label="Categorías">
+            <a href="#actualidad" class="hover:text-white">Política</a>
+            <a href="#actualidad" class="hover:text-white">Minería</a>
+            <a href="#actualidad" class="hover:text-white">Ambiente</a>
+            <a href="#actualidad" class="hover:text-white">Economía</a>
+            <a href="#actualidad" class="hover:text-white">Sociedad</a>
+            <a href="#actualidad" class="hover:text-white">Territorio</a>
+          </nav>
+        </div>
+
+
+        <!-- Column 4 -->
+        <div>
+          <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-white">
+            Síguenos
+          </h2>
+
+          <div class="mt-5 flex gap-3">
+
+            <a
+              href="#"
+              class="flex h-10 w-10 items-center justify-center border border-white/20 transition hover:border-white hover:bg-white hover:text-forest"
+              aria-label="Diálogo y Desarrollo en Facebook"
+            >
+              <span class="font-bold" aria-hidden="true">f</span>
+            </a>
+
+            <a
+              href="#"
+              class="flex h-10 w-10 items-center justify-center border border-white/20 transition hover:border-white hover:bg-white hover:text-forest"
+              aria-label="Diálogo y Desarrollo en X"
+            >
+              <span class="font-bold" aria-hidden="true">X</span>
+            </a>
+
+            <a
+              href="#"
+              class="flex h-10 w-10 items-center justify-center border border-white/20 transition hover:border-white hover:bg-white hover:text-forest"
+              aria-label="Diálogo y Desarrollo en Instagram"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1"></circle>
+              </svg>
+            </a>
+
+            <a
+              href="#"
+              class="flex h-10 w-10 items-center justify-center border border-white/20 transition hover:border-white hover:bg-white hover:text-forest"
+              aria-label="Diálogo y Desarrollo en LinkedIn"
+            >
+              <span class="font-bold" aria-hidden="true">in</span>
+            </a>
+
+          </div>
+
+          <p class="mt-5 text-sm leading-6 text-slate-400">
+            Publicamos nuevas perspectivas cada semana.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Footer bottom -->
+      <div class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+
+        <p>
+          © 2026 Diálogo y Desarrollo. Todos los derechos reservados.
+        </p>
+
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-white">Privacidad</a>
+          <a href="#" class="hover:text-white">Términos</a>
+          <a href="#" class="hover:text-white">Accesibilidad</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Back to top -->
+  <button
+    id="backToTop"
+    type="button"
+    class="fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-forest text-white shadow-lg hover:bg-navy"
+    aria-label="Volver al inicio"
+  >
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path d="m18 15-6-6-6 6"></path>
+    </svg>
+  </button>
+
+
+  <!-- Toast -->
+  <div
+    id="toast"
+    class="pointer-events-none fixed bottom-5 left-1/2 z-[60] -translate-x-1/2 translate-y-5 bg-charcoal px-5 py-3 text-sm font-semibold text-white opacity-0 shadow-xl transition-all duration-300"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script>
+    'use strict';
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuToggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación'
+      );
+
+      menuToggle.classList.toggle('menu-open', !isOpen);
+      mobileMenu.classList.toggle('hidden', isOpen);
+    });
+
+    document.querySelectorAll('#mobileMenu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+        menuToggle.classList.remove('menu-open');
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+
+    /* =========================================================
+       SEARCH PANEL
+       ========================================================= */
+
+    const searchToggle = document.getElementById('searchToggle');
+    const searchPanel = document.getElementById('searchPanel');
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+    const searchStatus = document.getElementById('searchStatus');
+
+    function openSearch() {
+      searchPanel.classList.add('is-open');
+      searchPanel.setAttribute('aria-hidden', 'false');
+      searchToggle.setAttribute('aria-expanded', 'true');
+      searchToggle.setAttribute('aria-label', 'Cerrar búsqueda');
+
+      setTimeout(() => {
+        searchInput.focus();
+      }, 100);
+    }
+
+    function closeSearch() {
+      searchPanel.classList.remove('is-open');
+      searchPanel.setAttribute('aria-hidden', 'true');
+      searchToggle.setAttribute('aria-expanded', 'false');
+      searchToggle.setAttribute('aria-label', 'Abrir búsqueda');
+    }
+
+    searchToggle.addEventListener('click', () => {
+      const isOpen = searchPanel.classList.contains('is-open');
+
+      if (isOpen) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeSearch();
+
+        if (menuToggle.getAttribute('aria-expanded') === 'true') {
+          menuToggle.click();
+        }
+      }
+    });
+
+
+    /* =========================================================
+       ARTICLE SEARCH
+       ========================================================= */
+
+    const articleGrid = document.getElementById('articleGrid');
+    const articles = Array.from(articleGrid.querySelectorAll('article'));
+    const noResults = document.getElementById('noResults');
+
+    function filterArticles(query) {
+      const normalizedQuery = query.trim().toLowerCase();
+
+      let visibleCount = 0;
+
+      articles.forEach((article) => {
+        const searchableText = (
+          article.textContent +
+          ' ' +
+          (article.dataset.search || '')
+        ).toLowerCase();
+
+        const matches = !normalizedQuery || searchableText.includes(normalizedQuery);
+
+        article.classList.toggle('hidden', !matches);
+
+        if (matches) {
+          visibleCount++;
+        }
+      });
+
+      noResults.classList.toggle('hidden', visibleCount !== 0);
+
+      if (normalizedQuery) {
+        searchStatus.textContent =
+          visibleCount === 1
+            ? 'Se encontró 1 publicación.'
+            : `Se encontraron ${visibleCount} publicaciones.`;
+      } else {
+        searchStatus.textContent = '';
+      }
+    }
+
+    searchInput.addEventListener('input', () => {
+      filterArticles(searchInput.value);
+    });
+
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      filterArticles(searchInput.value);
+
+      const query = searchInput.value.trim();
+
+      if (query) {
+        document.getElementById('actualidad').scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+
+
+    /* =========================================================
+       PODCAST SIMULATION
+       ========================================================= */
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-5');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-5');
+      }, 3000);
+    }
+
+    document.querySelectorAll('.listen-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const episode = button.dataset.episode;
+
+        showToast(`Reproduciendo: ${episode}`);
+
+        const originalHTML = button.innerHTML;
+
+        button.innerHTML = `
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <rect x="6" y="5" width="4" height="14"></rect>
+            <rect x="14" y="5" width="4" height="14"></rect>
+          </svg>
+          Pausar
+        `;
+
+        button.setAttribute('aria-pressed', 'true');
+
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+          button.removeAttribute('aria-pressed');
+        }, 5000);
+      });
+    });
+
+
+    /* =========================================================
+       NEWSLETTER
+       ========================================================= */
+
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterStatus = document.getElementById('newsletterStatus');
+
+    newsletterForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById('email');
+
+      if (!email.checkValidity()) {
+        newsletterStatus.textContent =
+          'Por favor, introduce un correo electrónico válido.';
+        email.focus();
+        return;
+      }
+
+      newsletterStatus.textContent =
+        '¡Gracias! Tu suscripción ha sido registrada correctamente.';
+
+      newsletterForm.reset();
+    });
+
+
+    /* =========================================================
+       BACK TO TOP
+       ========================================================= */
+
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (window.scrollY > 600) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      },
+      { passive: true }
+    );
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+
+    /* =========================================================
+       ACTIVE NAVIGATION
+       ========================================================= */
+
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll(
+      'header .nav-link'
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          navLinks.forEach((link) => {
+            const isCurrent =
+              link.getAttribute('href') === `#${entry.target.id}`;
+
+            if (isCurrent) {
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        });
+      },
+      {
+        rootMargin: '-30% 0px -60% 0px'
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+
+    /* =========================================================
+       IMAGE FALLBACK
+       ========================================================= */
+
+    document.querySelectorAll('img').forEach((image) => {
+      image.addEventListener('error', () => {
+        image.style.backgroundColor = '#1a472a';
+        image.removeAttribute('src');
+      });
+    });
+  </script>
+
+</body>
+</html>
